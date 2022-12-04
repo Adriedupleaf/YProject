@@ -1,4 +1,6 @@
-namespace WinFormsApp1
+using WinFormsApp1;
+
+namespace YProject.BackEnd
 {
     internal static class Program
     {

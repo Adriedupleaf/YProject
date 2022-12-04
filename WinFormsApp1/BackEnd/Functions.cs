@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinFormsApp1
+namespace YProject.BackEnd
 {
     internal class Functions
     {
-        public String[] gridTransform(DataGridView Grid,int cellIndex)
+        public string[] gridTransform(DataGridView Grid, int cellIndex)
         {
-            String []data = new String[Grid.Rows.Count];
-            for (int i = 0; i < Grid.Rows.Count-1; i++)
+            string[] data = new string[Grid.Rows.Count];
+            for (int i = 0; i < Grid.Rows.Count - 1; i++)
             {
                 if (Grid.Rows[i].Cells[cellIndex].Value != null)
                     data[i] = Grid.Rows[i].Cells[cellIndex].Value.ToString().Trim();
@@ -21,15 +21,15 @@ namespace WinFormsApp1
             Grid.Sort(Grid.Columns[cellIndex], ListSortDirection.Ascending);
             return data;
         }
-        public String[] A;
-        public void sorting(String []array, int start, int end, DataGridView Grid)
+        public string[] A;
+        public void sorting(string[] array, int start, int end, DataGridView Grid)
         {
-            
+
             int i = start;
             int k = end;
             if (end - start >= 1)
             {
-                String pivot = array[start];
+                string pivot = array[start];
                 while (k > i)
                 {
                     while (array[i].CompareTo(pivot) <= 0 && i <= end && k > i)
@@ -44,13 +44,13 @@ namespace WinFormsApp1
                 sorting(array, k + 1, end, Grid);
             }
             else { return; }
-            
+
             A = array;
         }
-        public void swap(String []array, int index1, int index2, DataGridView Grid)
+        public void swap(string[] array, int index1, int index2, DataGridView Grid)
         {
-           
-            String temp2 = array[index1];
+
+            string temp2 = array[index1];
             array[index1] = array[index2];
             array[index2] = temp2;
         }
