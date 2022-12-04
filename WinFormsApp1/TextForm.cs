@@ -13,7 +13,7 @@ namespace WinFormsApp1
 {
     public partial class TextForm : Form
     {
-        string? FileName ;
+        string? FileName;
 
         public TextForm()
         {
@@ -22,7 +22,7 @@ namespace WinFormsApp1
             
         }
 
-        
+
         private void SelectButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new()
@@ -32,7 +32,7 @@ namespace WinFormsApp1
                 DefaultExt = "txt",
                 Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
                 RestoreDirectory = true,
-                CheckFileExists = true, 
+                CheckFileExists = true,
                 CheckPathExists = true
             };
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -49,21 +49,21 @@ namespace WinFormsApp1
                 StreamReader Reader = new(FileName);
                 string element = Reader.ReadLine();
                 element = element.Trim();
-                string delimiters = " "+'\t';
+                string delimiters = " " + '\t';
                 string[] Header = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 foreach (string header in Header)
                 {
                     dataGridView1.Columns.Add(header, header);
                     IdComboBox.Items.Add(header);
                 }
-                string[]TopBase=new string[Regex.Matches(element, @"\b\w+\b").Count];
+                string[] TopBase = new string[Regex.Matches(element, @"\b\w+\b").Count];
                 while (!Reader.EndOfStream)
                 {
                     element = Reader.ReadLine();
                     _ = element.Trim();
                     TopBase = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    if (TopBase.Length == 0) continue;else
-                    dataGridView1.Rows.Add(TopBase);
+                    if (TopBase.Length == 0) continue; else
+                        dataGridView1.Rows.Add(TopBase);
                 }
                 ShowSort();
                 Reader.Close();
@@ -73,17 +73,34 @@ namespace WinFormsApp1
                 MessageBox.Show(e.Message);
             }
         }
-        private void ClearDataGrid()
+        private void ReadData(String[] Array)
         {
-            dataGridView1.Columns.Clear();
+            foreach (String str in Array)
+            {
+                dataGridView1.Rows.Add(str);
+
+            }
+
+
+        }
+        private void ClearPrevData(bool control)
+        {
+            if (control)
+            {
+                dataGridView1.Columns.Clear();
+                IdComboBox.Items.Clear();
+            }
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
+
         }
         private void ShowSort()
         {
             SortType.Items.Clear();
+            IdComboBox.SelectedIndex=0;
             SortType.Items.Add("ASC");
             SortType.Items.Add("DESC");
+            SortType.SelectedIndex = 0;
             SortingPanel.Visible = true;
         }
 
@@ -92,7 +109,7 @@ namespace WinFormsApp1
             
             if (File.Exists(textBox1.Text))
             {
-                ClearDataGrid();
+                ClearPrevData(true);
                 FileName = textBox1.Text;
                 ReadData();
                 SortButton2.Visible=true;
@@ -112,8 +129,8 @@ namespace WinFormsApp1
 
         private void SortButton_Click(object sender, EventArgs e)   
         {
-            Functions sortare = new Functions();            
-            sortare.sorting(sortare.gridTransform(dataGridView1,IdComboBox.SelectedIndex),0,dataGridView1.Rows.Count-2);
+            Functions sortare = new Functions();
+            sortare.sorting(sortare.gridTransform(dataGridView1,IdComboBox.SelectedIndex),0,dataGridView1.Rows.Count-2, dataGridView1);
             MessageBox.Show(sortare.A[0]);
         }
     }

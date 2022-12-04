@@ -109,6 +109,8 @@
             // 
             // SortType
             // 
+            this.SortType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SortType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SortType.FormattingEnabled = true;
             this.SortType.Location = new System.Drawing.Point(275, 39);
             this.SortType.Name = "SortType";
@@ -117,7 +119,8 @@
             // 
             // IdComboBox
             // 
-            this.IdComboBox.FormattingEnabled = true;
+            this.IdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.IdComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.IdComboBox.Location = new System.Drawing.Point(12, 39);
             this.IdComboBox.Name = "IdComboBox";
             this.IdComboBox.Size = new System.Drawing.Size(238, 28);
@@ -168,6 +171,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.SeaShell;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
