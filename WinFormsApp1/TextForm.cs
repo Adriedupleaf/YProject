@@ -60,7 +60,7 @@ namespace WinFormsApp1
                 while (!Reader.EndOfStream)
                 {
                     element = Reader.ReadLine();
-                    element.Trim();
+                    _ = element.Trim();
                     TopBase = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (TopBase.Length == 0) continue;else
                     dataGridView1.Rows.Add(TopBase);
@@ -95,7 +95,7 @@ namespace WinFormsApp1
                 ClearDataGrid();
                 FileName = textBox1.Text;
                 ReadData();
-
+                SortButton2.Visible=true;
             }
             else MessageBox.Show("File dont exists\nPlease select .txt file");
         }
@@ -103,6 +103,18 @@ namespace WinFormsApp1
         private void CloseButton_Click(object sender, EventArgs e)
         {
             SortingPanel.Visible = false;
+        }
+
+        private void SortButton2_Click(object sender, EventArgs e)
+        {
+            SortingPanel.Visible = true;
+        }
+
+        private void SortButton_Click(object sender, EventArgs e)   
+        {
+            Functions sortare = new Functions();            
+            sortare.sorting(sortare.gridTransform(dataGridView1,IdComboBox.SelectedIndex),0,dataGridView1.Rows.Count-2);
+            MessageBox.Show(sortare.A[0]);
         }
     }
 }

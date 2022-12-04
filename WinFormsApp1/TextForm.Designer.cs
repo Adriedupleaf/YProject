@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.SelectButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.OkButton = new System.Windows.Forms.Button();
@@ -39,12 +39,13 @@
             this.CloseButton = new System.Windows.Forms.Button();
             this.SortButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.SortButton2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.GridPanel = new System.Windows.Forms.Panel();
             this.SelectionPanel.SuspendLayout();
             this.SortingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.GridPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // SelectButton
@@ -81,13 +82,14 @@
             this.SelectionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectionPanel.AutoSize = true;
             this.SelectionPanel.Controls.Add(this.SortingPanel);
+            this.SelectionPanel.Controls.Add(this.SortButton2);
             this.SelectionPanel.Controls.Add(this.textBox1);
             this.SelectionPanel.Controls.Add(this.OkButton);
             this.SelectionPanel.Controls.Add(this.SelectButton);
             this.SelectionPanel.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.SelectionPanel.Location = new System.Drawing.Point(0, 326);
+            this.SelectionPanel.Location = new System.Drawing.Point(0, 328);
             this.SelectionPanel.Name = "SelectionPanel";
-            this.SelectionPanel.Size = new System.Drawing.Size(434, 74);
+            this.SelectionPanel.Size = new System.Drawing.Size(443, 77);
             this.SelectionPanel.TabIndex = 3;
             // 
             // SortingPanel
@@ -101,7 +103,7 @@
             this.SortingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SortingPanel.Location = new System.Drawing.Point(0, 0);
             this.SortingPanel.Name = "SortingPanel";
-            this.SortingPanel.Size = new System.Drawing.Size(434, 74);
+            this.SortingPanel.Size = new System.Drawing.Size(443, 77);
             this.SortingPanel.TabIndex = 3;
             this.SortingPanel.Visible = false;
             // 
@@ -141,6 +143,7 @@
             this.SortButton.TabIndex = 2;
             this.SortButton.Text = "Sort";
             this.SortButton.UseVisualStyleBackColor = true;
+            this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
             // 
             // label1
             // 
@@ -151,18 +154,30 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Sort data by:";
             // 
+            // SortButton2
+            // 
+            this.SortButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SortButton2.Location = new System.Drawing.Point(231, 40);
+            this.SortButton2.Name = "SortButton2";
+            this.SortButton2.Size = new System.Drawing.Size(94, 29);
+            this.SortButton2.TabIndex = 3;
+            this.SortButton2.Text = "Sorting";
+            this.SortButton2.UseVisualStyleBackColor = true;
+            this.SortButton2.Visible = false;
+            this.SortButton2.Click += new System.EventHandler(this.SortButton2_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.SeaShell;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Linen;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Linen;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -172,16 +187,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(434, 322);
             this.dataGridView1.TabIndex = 4;
             // 
-            // panel2
+            // GridPanel
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.GridPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.dataGridView1);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(434, 322);
-            this.panel2.TabIndex = 5;
+            this.GridPanel.Controls.Add(this.dataGridView1);
+            this.GridPanel.Location = new System.Drawing.Point(0, 0);
+            this.GridPanel.Name = "GridPanel";
+            this.GridPanel.Size = new System.Drawing.Size(434, 322);
+            this.GridPanel.TabIndex = 5;
             // 
             // TextForm
             // 
@@ -189,7 +204,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.NavajoWhite;
             this.ClientSize = new System.Drawing.Size(434, 406);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.GridPanel);
             this.Controls.Add(this.SelectionPanel);
             this.MinimumSize = new System.Drawing.Size(452, 453);
             this.Name = "TextForm";
@@ -199,7 +214,7 @@
             this.SortingPanel.ResumeLayout(false);
             this.SortingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.GridPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,12 +227,13 @@
         private Button OkButton;
         private Panel SelectionPanel;
         private DataGridView dataGridView1;
-        private Panel panel2;
+        private Panel GridPanel;
         private Panel SortingPanel;
+        private ComboBox SortType;
+        private ComboBox IdComboBox;
+        private Button CloseButton;
         private Button SortButton;
         private Label label1;
-        private Button CloseButton;
-        private ComboBox IdComboBox;
-        private ComboBox SortType;
+        private Button SortButton2;
     }
 }
