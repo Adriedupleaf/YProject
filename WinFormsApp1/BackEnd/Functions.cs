@@ -22,7 +22,7 @@ namespace YProject.BackEnd
             return data;
         }
         public string[] A;
-        public void sorting(string[] array, int start, int end, DataGridView Grid)
+        public void SortingAsc(string[] array, int start, int end, DataGridView Grid)
         {
 
             int i = start;
@@ -40,8 +40,8 @@ namespace YProject.BackEnd
                         swap(array, i, k, Grid);
                 }
                 swap(array, start, k, Grid);
-                sorting(array, start, k - 1, Grid);
-                sorting(array, k + 1, end, Grid);
+                SortingAsc(array, start, k - 1, Grid);
+                SortingAsc(array, k + 1, end, Grid);
             }
             else { return; }
 

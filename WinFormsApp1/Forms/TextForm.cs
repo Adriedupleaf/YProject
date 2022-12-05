@@ -47,27 +47,30 @@ namespace WinFormsApp1
         {
             try
             {
-                StreamReader Reader = new(FileName);
-                string element = Reader.ReadLine();
-                element = element.Trim();
-                string delimiters = " " + '\t';
-                string[] Header = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                foreach (string header in Header)
+                using (StreamReader Reader = new(FileName))
                 {
-                    dataGridView1.Columns.Add(header, header);
-                    IdComboBox.Items.Add(header);
+                    string element = Reader.ReadLine();
+                    element = element.Trim();
+                    string delimiters = " " + '\t';
+                    string[] Header = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string header in Header)
+                    {
+                        dataGridView1.Columns.Add(header, header);
+                        IdComboBox.Items.Add(header);
+                    }
+                    string[] TopBase = new string[Regex.Matches(element, @"\b\w+\b").Count];
+                    while (!Reader.EndOfStream)
+                    {
+                        element = Reader.ReadLine();
+                        _ = element.Trim();
+                        TopBase = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                        if (TopBase.Length == 0) continue;
+                        else
+                            dataGridView1.Rows.Add(TopBase);
+                    }
+                    ShowSort();
+                    
                 }
-                string[] TopBase = new string[Regex.Matches(element, @"\b\w+\b").Count];
-                while (!Reader.EndOfStream)
-                {
-                    element = Reader.ReadLine();
-                    _ = element.Trim();
-                    TopBase = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    if (TopBase.Length == 0) continue; else
-                        dataGridView1.Rows.Add(TopBase);
-                }
-                ShowSort();
-                Reader.Close();
             }
             catch (Exception e)
             {
@@ -128,11 +131,14 @@ namespace WinFormsApp1
             SortingPanel.Visible = true;
         }
 
-        private void SortButton_Click(object sender, EventArgs e)   
+        private void SortButton_Click(object sender, EventArgs e)
         {
-            Functions sortare = new Functions();
-            sortare.sorting(sortare.gridTransform(dataGridView1,IdComboBox.SelectedIndex),0,dataGridView1.Rows.Count-2, dataGridView1);
-            MessageBox.Show(sortare.A[0]);
+            if (SortType.SelectedIndex == 0)
+            {
+                Functions sortare = new Functions();
+                sortare.SortingAsc(sortare.gridTransform(dataGridView1, IdComboBox.SelectedIndex), 0, dataGridView1.Rows.Count - 2, dataGridView1);
+            }
+            else { dataGridView1.Sort(dataGridView1.Columns[IdComboBox.SelectedIndex], ListSortDirection.Descending); }
         }
     }
 }
