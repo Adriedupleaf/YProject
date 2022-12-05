@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using YProject.BackEnd;
 
 namespace WinFormsApp1
@@ -20,7 +12,7 @@ namespace WinFormsApp1
         {
 
             InitializeComponent();
-            
+
         }
 
 
@@ -69,7 +61,7 @@ namespace WinFormsApp1
                             dataGridView1.Rows.Add(TopBase);
                     }
                     ShowSort();
-                    
+
                 }
             }
             catch (Exception e)
@@ -101,7 +93,7 @@ namespace WinFormsApp1
         private void ShowSort()
         {
             SortType.Items.Clear();
-            IdComboBox.SelectedIndex=0;
+            IdComboBox.SelectedIndex = 0;
             SortType.Items.Add("ASC");
             SortType.Items.Add("DESC");
             SortType.SelectedIndex = 0;
@@ -110,13 +102,13 @@ namespace WinFormsApp1
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            
+
             if (File.Exists(textBox1.Text))
             {
                 ClearPrevData(true);
                 FileName = textBox1.Text;
                 ReadData();
-                SortButton2.Visible=true;
+                SortButton2.Visible = true;
             }
             else MessageBox.Show("File dont exists\nPlease select .txt file");
         }
