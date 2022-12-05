@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using YProject.BackEnd;
 
 namespace WinFormsApp1
@@ -20,7 +12,7 @@ namespace WinFormsApp1
         {
 
             InitializeComponent();
-            
+
         }
 
 
@@ -47,27 +39,30 @@ namespace WinFormsApp1
         {
             try
             {
-                StreamReader Reader = new(FileName);
-                string element = Reader.ReadLine();
-                element = element.Trim();
-                string delimiters = " " + '\t';
-                string[] Header = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                foreach (string header in Header)
+                using (StreamReader Reader = new(FileName))
                 {
-                    dataGridView1.Columns.Add(header, header);
-                    IdComboBox.Items.Add(header);
+                    string element = Reader.ReadLine();
+                    element = element.Trim();
+                    string delimiters = " " + '\t';
+                    string[] Header = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string header in Header)
+                    {
+                        dataGridView1.Columns.Add(header, header);
+                        IdComboBox.Items.Add(header);
+                    }
+                    string[] TopBase = new string[Regex.Matches(element, @"\b\w+\b").Count];
+                    while (!Reader.EndOfStream)
+                    {
+                        element = Reader.ReadLine();
+                        _ = element.Trim();
+                        TopBase = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                        if (TopBase.Length == 0) continue;
+                        else
+                            dataGridView1.Rows.Add(TopBase);
+                    }
+                    ShowSort();
+
                 }
-                string[] TopBase = new string[Regex.Matches(element, @"\b\w+\b").Count];
-                while (!Reader.EndOfStream)
-                {
-                    element = Reader.ReadLine();
-                    _ = element.Trim();
-                    TopBase = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    if (TopBase.Length == 0) continue; else
-                        dataGridView1.Rows.Add(TopBase);
-                }
-                ShowSort();
-                Reader.Close();
             }
             catch (Exception e)
             {
@@ -98,7 +93,7 @@ namespace WinFormsApp1
         private void ShowSort()
         {
             SortType.Items.Clear();
-            IdComboBox.SelectedIndex=0;
+            IdComboBox.SelectedIndex = 0;
             SortType.Items.Add("ASC");
             SortType.Items.Add("DESC");
             SortType.SelectedIndex = 0;
@@ -107,13 +102,13 @@ namespace WinFormsApp1
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            
+
             if (File.Exists(textBox1.Text))
             {
                 ClearPrevData(true);
                 FileName = textBox1.Text;
                 ReadData();
-                SortButton2.Visible=true;
+                SortButton2.Visible = true;
             }
             else MessageBox.Show("File dont exists\nPlease select .txt file");
         }
@@ -128,11 +123,14 @@ namespace WinFormsApp1
             SortingPanel.Visible = true;
         }
 
-        private void SortButton_Click(object sender, EventArgs e)   
+        private void SortButton_Click(object sender, EventArgs e)
         {
-            Functions sortare = new Functions();
-            sortare.sorting(sortare.gridTransform(dataGridView1,IdComboBox.SelectedIndex),0,dataGridView1.Rows.Count-2, dataGridView1);
-            MessageBox.Show(sortare.A[0]);
+            if (SortType.SelectedIndex == 0)
+            {
+                Functions sortare = new Functions();
+                sortare.SortingAsc(sortare.gridTransform(dataGridView1, IdComboBox.SelectedIndex), 0, dataGridView1.Rows.Count - 2, dataGridView1);
+            }
+            else { dataGridView1.Sort(dataGridView1.Columns[IdComboBox.SelectedIndex], ListSortDirection.Descending); }
         }
     }
 }
