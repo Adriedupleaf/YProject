@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp1
 {
@@ -20,12 +21,14 @@ namespace WinFormsApp1
 
         private void ExcelButton_Click(object sender, EventArgs e)
         {
-            ExcelForm Excel=new ExcelForm();
-            Excel.TopLevel = false;
-            Excel.ControlBox = false;
-            Excel.AutoScroll = true;
-            Excel.FormBorderStyle = FormBorderStyle.None;
-            Excel.Dock = DockStyle.Fill;
+            ExcelForm Excel = new()
+            {
+                TopLevel = false,
+                ControlBox = false,
+                AutoScroll = true,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2.Controls.Add(Excel);
             Excel.Show();
@@ -34,12 +37,14 @@ namespace WinFormsApp1
 
         private void TextButton_Click(object sender, EventArgs e)
         {
-            TextForm Text = new TextForm();
-            Text.TopLevel = false;
-            Text.ControlBox = false;
-            Text.AutoScroll = true;
-            Text.FormBorderStyle = FormBorderStyle.None;
-            Text.Dock = DockStyle.Fill;
+            TextForm Text = new()
+            {
+                TopLevel = false,
+                ControlBox = false,
+                AutoScroll = true,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2.Controls.Add(Text);
             Text.Show();
@@ -47,17 +52,23 @@ namespace WinFormsApp1
 
         private void SqlButton_Click(object sender, EventArgs e)
         {
-            
-            SqlForm SQL = new SqlForm();
-            SQL.TopLevel = false;
-            SQL.ControlBox = false;
-            SQL.AutoScroll = true;
-            SQL.FormBorderStyle= FormBorderStyle.None;
-            SQL.Dock = DockStyle.Fill;
+
+            SqlForm SQL = new()
+            {
+                TopLevel = false,
+                ControlBox = false,
+                AutoScroll = true,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2.Controls.Add(SQL);
             SQL.Show();
             
+        }
+        private void Main_Resize(object sender, EventArgs e)
+        {
+
         }
     }
 }
