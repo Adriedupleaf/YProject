@@ -41,8 +41,8 @@ namespace WinFormsApp1
             {
                 using (StreamReader Reader = new(FileName))
                 {
-                    string element = Reader.ReadLine();
-                    element = element.Trim();
+                    string? element = Reader?.ReadLine();
+                    element = element?.Trim();
                     string delimiters = " " + '\t';
                     string[] Header = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     foreach (string header in Header)
@@ -55,6 +55,7 @@ namespace WinFormsApp1
                     {
                         element = Reader.ReadLine();
                         _ = element.Trim();
+
                         TopBase = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                         if (TopBase.Length == 0) continue;
                         else
@@ -125,12 +126,15 @@ namespace WinFormsApp1
 
         private void SortButton_Click(object sender, EventArgs e)
         {
+            Functions sortare = new();
             if (SortType.SelectedIndex == 0)
             {
-                Functions sortare = new Functions();
-                sortare.SortingAsc(sortare.gridTransform(dataGridView1, IdComboBox.SelectedIndex), 0, dataGridView1.Rows.Count - 2, dataGridView1);
+                
+                sortare.SortingAsc(Functions.gridTransform(dataGridView1, IdComboBox.SelectedIndex), 0, dataGridView1.Rows.Count - 1, dataGridView1);
             }
-            else { dataGridView1.Sort(dataGridView1.Columns[IdComboBox.SelectedIndex], ListSortDirection.Descending); }
+            else {
+                sortare.SortingDesc(Functions.gridTransform(dataGridView1, IdComboBox.SelectedIndex), 0, dataGridView1.Rows.Count - 1, dataGridView1);
+                }
         }
     }
 }
