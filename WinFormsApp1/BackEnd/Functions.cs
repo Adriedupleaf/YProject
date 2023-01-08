@@ -56,15 +56,16 @@ namespace YProject.BackEnd
                 string pivot = array[start];
                 while (k > i)
                 {
-                    while (array[i].CompareTo(pivot) <= 0 && i <= end && k > i)
-                        i++;
-                    while (array[k].CompareTo(pivot) > 0 && k >= start && k >= i)
+                    while (array[k].CompareTo(pivot) <= 0 && k >= start && k > i)
                         k--;
+                    while (array[i].CompareTo(pivot) > 0 && i <= end && k >= i)
+                        i++;
+                    
                     if (k > i)
                         swap(array, i, k, Grid);
                 }
                 swap(array, start, k, Grid);
-                SortingDesc(array, start, k - 1, Grid);
+                SortingDesc(array, start, i - 1, Grid);
                 SortingDesc(array, k + 1, end, Grid);
             }
             else { return; }
