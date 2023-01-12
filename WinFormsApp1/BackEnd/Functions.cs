@@ -72,16 +72,16 @@ namespace YProject.BackEnd
 
            
         }
-        private static void SwapRows(DataGridView grid, int row1, int row2)
+        private static void SwapRows(DataGridView Grid, int row1, int row2)
         {
-            if (row1 != row2 && row1 >= 0 && row2 >= 0 && row1 < grid.RowCount && row2 < grid.RowCount)
+            if (row1 != row2 && row1 >= 0 && row2 >= 0 && row1 < Grid.RowCount && row2 < Grid.RowCount)
             {
-                var rows = grid.Rows.Cast<DataGridViewRow>().ToArray();
+                var rows = Grid.Rows.Cast<DataGridViewRow>().ToArray();
                 var temp = rows[row1];
                 rows[row1] = rows[row2];
                 rows[row2] = temp;
-                grid.Rows.Clear();
-                grid.Rows.AddRange(rows);
+                Grid.Rows.Clear();
+                Grid.Rows.AddRange(rows);
             }
         }
         public static void swap(string[] array, int index1, int index2, DataGridView Grid)
