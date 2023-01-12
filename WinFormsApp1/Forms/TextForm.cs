@@ -8,6 +8,7 @@ namespace WinFormsApp1
     {
         DataReader DataReader=new();
         ControlsLayout ControlsLayout=new();
+        Functions sortare = new();
         public TextForm()
         {
 
@@ -22,18 +23,6 @@ namespace WinFormsApp1
         private void SelectButton_Click(object sender, EventArgs e)
         {
             DataReader.FileSearchOpen(textBox1);
-        }
-       
-        private void ClearPrevData(bool control)
-        {
-            if (control)
-            {
-                dataGridView1.Columns.Clear();
-                IdComboBox.Items.Clear();
-            }
-            dataGridView1.Rows.Clear();
-            dataGridView1.Refresh();
-
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -61,7 +50,6 @@ namespace WinFormsApp1
 
         private void SortButton_Click(object sender, EventArgs e)
         {
-            Functions sortare = new();
             if (SortType.SelectedIndex == 0)
             {
                 
