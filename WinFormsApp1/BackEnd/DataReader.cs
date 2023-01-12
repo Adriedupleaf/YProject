@@ -39,8 +39,8 @@ namespace YProject.BackEnd
             }
             catch (Exception e)
             {
-                return false;
                 MessageBox.Show(e.Message);
+                return false;
             }
 
         }
