@@ -1,17 +1,13 @@
-using System.ComponentModel;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 namespace WinFormsApp1
 {
     public partial class Main : Form
     {
-        
+
 
         public Main()
         {
             InitializeComponent();
-            
+
         }
 
         private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
@@ -64,10 +60,6 @@ namespace WinFormsApp1
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2.Controls.Add(SQL);
             SQL.Show();
-            
-        }
-        private void Main_Resize(object sender, EventArgs e)
-        {
 
         }
     }

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YProject.BackEnd
+﻿namespace YProject.BackEnd
 {
     internal class Functions
     {
         public static string[] gridTransform(DataGridView Grid, int cellIndex)
         {
             string[] data = new string[Grid.Rows.Count];
-            for (int i = 0; i < Grid.Rows.Count ; i++)
+            for (int i = 0; i < Grid.Rows.Count; i++)
             {
                 if (Grid.Rows[i].Cells[cellIndex].Value != null)
                     data[i] = Grid.Rows[i].Cells[cellIndex].Value.ToString().Trim();
@@ -20,7 +13,7 @@ namespace YProject.BackEnd
             }
             return data;
         }
-        
+
         public void SortingAsc(string[] array, int start, int end, DataGridView Grid)
         {
 
@@ -44,7 +37,7 @@ namespace YProject.BackEnd
             }
             else { return; }
 
-           
+
         }
         public void SortingDesc(string[] array, int start, int end, DataGridView Grid)
         {
@@ -60,7 +53,7 @@ namespace YProject.BackEnd
                         k--;
                     while (array[i].CompareTo(pivot) > 0 && i <= end && k >= i)
                         i++;
-                    
+
                     if (k > i)
                         swap(array, i, k, Grid);
                 }
@@ -70,7 +63,7 @@ namespace YProject.BackEnd
             }
             else { return; }
 
-           
+
         }
         private static void SwapRows(DataGridView Grid, int row1, int row2)
         {
@@ -86,7 +79,7 @@ namespace YProject.BackEnd
         }
         public static void swap(string[] array, int index1, int index2, DataGridView Grid)
         {
-            
+
             (array[index2], array[index1]) = (array[index1], array[index2]);
             SwapRows(Grid, index1, index2);
         }

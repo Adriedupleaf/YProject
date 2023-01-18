@@ -1,13 +1,11 @@
-﻿using System.ComponentModel;
-using System.Text.RegularExpressions;
-using YProject.BackEnd;
+﻿using YProject.BackEnd;
 
 namespace WinFormsApp1
 {
     public partial class TextForm : Form
     {
-        DataReader DataReader=new();
-        ControlsLayout ControlsLayout=new();
+        DataReaderText DataReader = new();
+        ControlsLayout ControlsLayout = new();
         Functions sortare = new();
         public TextForm()
         {
@@ -30,9 +28,9 @@ namespace WinFormsApp1
 
             if (File.Exists(textBox1.Text))
             {
-                ControlsLayout.ClearPrevData(dataGridView1,IdComboBox);
+                ControlsLayout.ClearPrevData(dataGridView1, IdComboBox);
                 if (DataReader.ReadData(dataGridView1, IdComboBox))
-                    ControlsLayout.ShowSort(IdComboBox,SortingPanel);
+                    ControlsLayout.ShowSort(IdComboBox, SortingPanel);
                 SortButton2.Visible = true;
             }
             else MessageBox.Show("File dont exists\nPlease select .txt file");
@@ -52,12 +50,13 @@ namespace WinFormsApp1
         {
             if (SortType.SelectedIndex == 0)
             {
-                
+
                 sortare.SortingAsc(Functions.gridTransform(dataGridView1, IdComboBox.SelectedIndex), 0, dataGridView1.Rows.Count - 1, dataGridView1);
             }
-            else {
+            else
+            {
                 sortare.SortingDesc(Functions.gridTransform(dataGridView1, IdComboBox.SelectedIndex), 0, dataGridView1.Rows.Count - 1, dataGridView1);
-                }
+            }
         }
     }
 }
