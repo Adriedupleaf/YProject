@@ -18,8 +18,14 @@ namespace WinFormsApp1
 
         private void SqlForm_Load(object sender, EventArgs e)
         {
-            DataReaderSql.getDataSources(connectionsComboBox);
-            connectionsComboBox.SelectedIndex = 0;
+            try
+            {
+                DataReaderSql.getDataSources(connectionsComboBox);
+                connectionsComboBox.SelectedIndex = 0;
+            }
+            catch(Exception ex) { Console.WriteLine(ex); }
+
+            
         }
         
 
@@ -30,14 +36,15 @@ namespace WinFormsApp1
             DataReaderSql.getDatabases(connectionsComboBox, dbSelectorComboBox);
             dbSelectorComboBox.Visible = true;
             dbSelectorComboBox.SelectedIndex = 0;
-            dbTableComboBox.Visible=true;
+            
         }
 
         private void DbSelectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dbTableComboBox.Items.Clear();
-            DataReaderSql.getDataTables(connectionsComboBox,dbTableComboBox);
-            
+            Console.WriteLine(dbSelectorComboBox.SelectedItem.ToString());
+            Console.WriteLine(connectionsComboBox.SelectedItem.ToString());
+            DataReaderSql.getDataTables(connectionsComboBox,dbSelectorComboBox,dbTableComboBox);
+            dbTableComboBox.Visible = true;
         }
 
         private void OkButton_Click(object sender, EventArgs e)

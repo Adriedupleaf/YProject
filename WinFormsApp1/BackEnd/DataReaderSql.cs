@@ -26,15 +26,15 @@ namespace YProject.BackEnd
                 {
                     foreach (var instanceName in instanceKey.GetValueNames())
                     {
-                        connectionsComboBox.Items.Add(instanceName);
-                        Console.WriteLine(ServerName + "\\" + instanceName);
+                        connectionsComboBox.Items.Add(ServerName);
+                        Console.WriteLine(ServerName + '\\' + instanceName);
                     }
                 }
             }
         }
         public void getDatabases(ComboBox connectionsComboBox,ComboBox dbSelectorComboBox)
         {
-            using (var con = new SqlConnection("Data Source=" + connectionsComboBox.SelectedText + "; Integrated Security=true;Encrypt=False"))
+            using (var con = new SqlConnection("Data Source=" + connectionsComboBox.SelectedItem.ToString() + "; Integrated Security=true;Encrypt=False"))
             {
                 con.Open();
                 DataTable databases = con.GetSchema("Databases");
@@ -45,15 +45,26 @@ namespace YProject.BackEnd
                 }
             }
         }
-        public void getDataTables(ComboBox connectionsComboBox,ComboBox dbTableComboBox)
+        public void getDataTables(ComboBox connectionsComboBox, ComboBox dbSelectorComboBox, ComboBox dbTableComboBox)
         {
-            using (var con = new SqlConnection("Data Source=" + connectionsComboBox.SelectedText + "; Integrated Security=true;Encrypt=False"))
+            
+            using (SqlConnection con = new SqlConnection("Data Source=" + connectionsComboBox.SelectedItem.ToString() + ";Database=" + dbSelectorComboBox.SelectedItem.ToString() + "; Integrated Security=true;Encrypt=False"))
             {
                 con.Open();
-                DataTable t = con.GetSchema("Tables");
-                foreach (DataRow tab in t.Rows)
-                    dbTableComboBox.Items.Add(tab[2].ToString());
+                using (SqlCommand com = new SqlCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", con))
+                {
+                    using (SqlDataReader reader = com.ExecuteReader())
+                    {
+                        dbTableComboBox.Items.Clear();
+                        while (reader.Read())
+                        {
+                            Console.WriteLine(reader[0]);
+                            dbTableComboBox.Items.Add((string)reader["TABLE_NAME"]);
+                        }
+                    }
+                }
             }
+
         }
     }
 }

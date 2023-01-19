@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SqlServer.Smo.dll" Version="1.0.1" />
+    <PackageReference Include="Microsoft.SqlServer.Smo.dll" Version="1.0.0" />
     <PackageReference Include="Microsoft.SqlServer.SqlManagementObjects" Version="170.11.0" />
   </ItemGroup>
 
