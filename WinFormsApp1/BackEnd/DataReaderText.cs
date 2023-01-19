@@ -1,12 +1,13 @@
-﻿using System.Text.RegularExpressions;
-
+﻿using Microsoft.Win32;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 namespace YProject.BackEnd
 {
-    internal class DataReader
+    internal class DataReaderText : IReader
     {
         public string? FileName;
 
-        public bool ReadData(DataGridView Grid, System.Windows.Forms.ComboBox IdComboBox)
+        public bool ReadData(DataGridView Grid, ComboBox IdComboBox)
         {
             try
             {
@@ -41,7 +42,7 @@ namespace YProject.BackEnd
 
         }
 
-        public void FileSearchOpen(System.Windows.Forms.TextBox Path)
+        public void FileSearchOpen(TextBox Path)
         {
             OpenFileDialog openFileDialog1 = new()
             {
@@ -59,5 +60,7 @@ namespace YProject.BackEnd
                 FileName = openFileDialog1.FileName;
             }
         }
+
+
     }
 }
