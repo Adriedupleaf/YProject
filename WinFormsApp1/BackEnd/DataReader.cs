@@ -1,13 +1,12 @@
-﻿using Microsoft.Win32;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
+﻿using System.Text.RegularExpressions;
+
 namespace YProject.BackEnd
 {
-    internal class DataReaderText : IReader
+    internal class DataReader
     {
         public string? FileName;
 
-        public bool ReadData(DataGridView Grid, ComboBox IdComboBox)
+        public bool ReadData(DataGridView Grid, System.Windows.Forms.ComboBox IdComboBox)
         {
             try
             {
@@ -15,7 +14,7 @@ namespace YProject.BackEnd
                 {
                     string? element = Reader?.ReadLine();
                     element = element?.Trim();
-                    string delimiters = "\t"+' ';
+                    string delimiters = "\t";
                     string[] Header = element.Split(delimiters.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     foreach (string header in Header)
                     {
@@ -34,6 +33,7 @@ namespace YProject.BackEnd
                             Grid.Rows.Add(TopBase);
                     }
                     return true;
+                    //ShowSort();
 
                 }
             }
@@ -45,7 +45,7 @@ namespace YProject.BackEnd
 
         }
 
-        public void FileSearchOpen(TextBox Path)
+        public void FileSearchOpen(System.Windows.Forms.TextBox Path)
         {
             OpenFileDialog openFileDialog1 = new()
             {
@@ -63,7 +63,5 @@ namespace YProject.BackEnd
                 FileName = openFileDialog1.FileName;
             }
         }
-        
-
     }
 }
