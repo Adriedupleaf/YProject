@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 namespace YProject.BackEnd
 {
-    internal class DataReaderText : IReader
+    internal class DataReaderText 
     {
         public string? FileName;
 
@@ -47,7 +47,7 @@ namespace YProject.BackEnd
             OpenFileDialog openFileDialog1 = new()
             {
                 InitialDirectory = @"C:\",
-                Title = "Browse Text Files",
+                Title = "Browse Text File",
                 DefaultExt = "txt",
                 Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
                 RestoreDirectory = true,

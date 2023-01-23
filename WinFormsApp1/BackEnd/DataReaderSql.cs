@@ -6,33 +6,60 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace YProject.BackEnd
 {
-    internal class DataReaderSql : IReader
+    internal class DataReaderSql 
     {
-        bool IReader.ReadData(DataGridView Grid, ComboBox IdComboBox)
+        public static bool ReadData(string connectionString, DataGridView dataGrid, string tb, ComboBox IdComboBox)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var c = new SqlConnection(connectionString);
+                var dataAdapter = new SqlDataAdapter("SELECT * FROM " + tb, c);
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                foreach(var item in ds.Tables[0].Columns)
+                    IdComboBox.Items.Add(item);
+                //dataGrid.DataSource = ds.Tables[0];
+                foreach (DataColumn dc in ds.Tables[0].Columns)
+                {
+
+                    dataGrid.Columns.Add(dc.ColumnName, dc.ColumnName);
+
+                }
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+
+                    dataGrid.Rows.Add(dr.ItemArray);
+
+                }
+                return true;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); return false; }
         }
-        public void getDataSources(ComboBox connectionsComboBox)
+        public static void GetDataSources(ComboBox connectionsComboBox)
         {
             string ServerName = Environment.MachineName;
             RegistryView registryView = Environment.Is64BitOperatingSystem ? RegistryView.Registry64 : RegistryView.Registry32;
             using (RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, registryView))
             {
-                RegistryKey instanceKey = hklm.OpenSubKey(@"SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL", false);
-                if (instanceKey != null)
+                using (RegistryKey instanceKey = hklm.OpenSubKey(@"SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL", false))
                 {
-                    foreach (var instanceName in instanceKey.GetValueNames())
+                    if (instanceKey != null)
                     {
-                        connectionsComboBox.Items.Add(ServerName);
-                        Console.WriteLine(ServerName + '\\' + instanceName);
+                        foreach (var instanceName in instanceKey.GetValueNames())
+                        {
+                            connectionsComboBox.Items.Add(ServerName);
+                            Console.WriteLine(ServerName + '\\' + instanceName);
+                        }
                     }
                 }
             }
         }
-        public void getDatabases(ComboBox connectionsComboBox,ComboBox dbSelectorComboBox)
+        public static void GetDatabases(ComboBox connectionsComboBox, ComboBox dbSelectorComboBox)
         {
             using (var con = new SqlConnection("Data Source=" + connectionsComboBox.SelectedItem.ToString() + "; Integrated Security=true;Encrypt=False"))
             {
@@ -45,9 +72,9 @@ namespace YProject.BackEnd
                 }
             }
         }
-        public void getDataTables(ComboBox connectionsComboBox, ComboBox dbSelectorComboBox, ComboBox dbTableComboBox)
+        public static void GetDataTables(ComboBox connectionsComboBox, ComboBox dbSelectorComboBox, ComboBox dbTableComboBox)
         {
-            
+
             using (SqlConnection con = new SqlConnection("Data Source=" + connectionsComboBox.SelectedItem.ToString() + ";Database=" + dbSelectorComboBox.SelectedItem.ToString() + "; Integrated Security=true;Encrypt=False"))
             {
                 con.Open();

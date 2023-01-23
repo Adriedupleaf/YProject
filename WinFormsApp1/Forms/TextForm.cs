@@ -11,9 +11,7 @@ namespace WinFormsApp1
         {
 
             InitializeComponent();
-            SortType.Items.Add("ASC");
-            SortType.Items.Add("DESC");
-            SortType.SelectedIndex = 0;
+            ControlsLayout.initSort(SortType);
 
         }
 
