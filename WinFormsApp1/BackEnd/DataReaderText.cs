@@ -1,9 +1,7 @@
-﻿using Microsoft.Win32;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
+﻿using System.Text.RegularExpressions;
 namespace YProject.BackEnd
 {
-    internal class DataReaderText 
+    internal class DataReaderText
     {
         public string? FileName;
 

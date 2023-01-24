@@ -1,16 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace YProject.BackEnd
 {
-    internal class DataReaderSql 
+    internal class DataReaderSql
     {
         public static bool ReadData(string connectionString, DataGridView dataGrid, string tb, ComboBox IdComboBox)
         {
@@ -21,7 +15,7 @@ namespace YProject.BackEnd
                 var commandBuilder = new SqlCommandBuilder(dataAdapter);
                 var ds = new DataSet();
                 dataAdapter.Fill(ds);
-                foreach(var item in ds.Tables[0].Columns)
+                foreach (var item in ds.Tables[0].Columns)
                     IdComboBox.Items.Add(item);
                 //dataGrid.DataSource = ds.Tables[0];
                 foreach (DataColumn dc in ds.Tables[0].Columns)
@@ -75,10 +69,10 @@ namespace YProject.BackEnd
         public static void GetDataTables(ComboBox connectionsComboBox, ComboBox dbSelectorComboBox, ComboBox dbTableComboBox)
         {
 
-            using (SqlConnection con = new SqlConnection("Data Source=" + connectionsComboBox.SelectedItem.ToString() + ";Database=" + dbSelectorComboBox.SelectedItem.ToString() + "; Integrated Security=true;Encrypt=False"))
+            using (SqlConnection con = new("Data Source=" + connectionsComboBox.SelectedItem.ToString() + ";Database=" + dbSelectorComboBox.SelectedItem.ToString() + "; Integrated Security=true;Encrypt=False"))
             {
                 con.Open();
-                using (SqlCommand com = new SqlCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", con))
+                using (SqlCommand com = new("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", con))
                 {
                     using (SqlDataReader reader = com.ExecuteReader())
                     {

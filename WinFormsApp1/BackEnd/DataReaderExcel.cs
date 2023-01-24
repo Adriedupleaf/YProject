@@ -1,45 +1,70 @@
 ﻿using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace YProject.BackEnd
 {
     internal class DataReaderExcel
     {
         public string? FileName;
-        public bool ReadData(DataGridView dataGrid, string excelFileName, string sheetName)
+        public bool ReadData(DataGridView dataGrid, string excelFileName, string sheetName, ComboBox idComboBox)
         {
 
             try
             {
-                    using (ExcelPackage xlPackage = new(new FileInfo(excelFileName)))
-                    {    
-                        ExcelWorksheet worksheet = xlPackage.Workbook.Worksheets[sheetName];
-                        ExcelCellAddress startCell = worksheet.Dimension.Start;
-                        ExcelCellAddress endCell = worksheet.Dimension.End;
-
-                        for (Int32 row = startCell.Row; row <= endCell.Row; row++)
-                        {  
-                            dataGrid.Rows.Add();
-                            for (int col = startCell.Column; col <= endCell.Column; col++)
-                            {
-                                var excelCell = worksheet.Workbook.Worksheets.First().Cells[row, col];
-                                var gridViewCell = dataGrid.Rows[row - 1].Cells[col - 1];
-                                gridViewCell.Value = excelCell.Value;
-                            }
+                using (ExcelPackage xlPackage = new(new FileInfo(excelFileName)))
+                {
+                    DataTable dt = new DataTable();
+                    ExcelWorksheet worksheet = xlPackage.Workbook.Worksheets[sheetName];
+                    if (worksheet.Dimension == null)
+                        throw (new Exception("Nu sunt date"));
+                    List<string> columnNames = new List<string>();
+                    int currentColumn = 1;
+                    foreach (var cell in worksheet.Cells[1, 1, 1, worksheet.Dimension.End.Column])
+                    {
+                        string columnName = cell.Text.Trim();
+                        if (cell.Start.Column != currentColumn)
+                        {
+                            columnNames.Add("Header_" + currentColumn);
+                            dt.Columns.Add("Header_" + currentColumn);
+                            currentColumn++;
                         }
-                    
+                        columnNames.Add(columnName);
+                        int occurrences = columnNames.Count(x => x.Equals(columnName));
+                        if (occurrences > 1)
+                        {
+                            columnName = columnName + "_" + occurrences;
+                        }
+                        dt.Columns.Add(columnName);
+                        currentColumn++;
+                    }
+                    for (int i = 2; i <= worksheet.Dimension.End.Row; i++)
+                    {
+                        var row = worksheet.Cells[i, 1, i, worksheet.Dimension.End.Column];
+                        DataRow newRow = dt.NewRow();
+                        foreach (var cell in row)
+                        {
+                            newRow[cell.Start.Column - 1] = cell.Text;
+                        }
+
+                        dt.Rows.Add(newRow);
+
+                    }
 
                 }
+
                 return true;
 
             }
-            catch(Exception ex) { Console.WriteLine(ex); return false; }
-            
+            catch (Exception ex) { Console.WriteLine(ex); return false; }
+
+        }
+        public void DataBinding(ComboBox IdComboBox, DataGridView DataGrid)
+        {
+            foreach (DataColumn col in dt.Columns)
+                dataGrid.Columns.Add(col.ColumnName, col.ColumnName);
+            foreach (DataRow row in dt.Rows)
+                dataGrid.Rows.Add(row.ItemArray);
+            idComboBox.DataSource = columnNames;
         }
         public void FileSearchOpen(TextBox Path)
         {
@@ -59,7 +84,7 @@ namespace YProject.BackEnd
                 FileName = openFileDialog1.FileName;
             }
         }
-        public static void GetSheetNames(string path, ComboBox sheetComboBox)
+        public void GetSheetNames(string path, ComboBox sheetComboBox)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using ExcelPackage xlPackage = new(new FileInfo(path));
@@ -67,5 +92,5 @@ namespace YProject.BackEnd
             foreach (string s in sheets)
                 sheetComboBox.Items.Add(s);
         }
-}
+    }
 }

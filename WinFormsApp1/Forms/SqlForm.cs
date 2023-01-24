@@ -1,8 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.Win32;
-using System.Data;
-using System.Drawing;
-using YProject.BackEnd;
+﻿using YProject.BackEnd;
 
 namespace WinFormsApp1
 {
@@ -24,11 +20,11 @@ namespace WinFormsApp1
                 DataReaderSql.GetDataSources(connectionsComboBox);
                 connectionsComboBox.SelectedIndex = 0;
             }
-            catch(Exception ex) { Console.WriteLine(ex); }
+            catch (Exception ex) { Console.WriteLine(ex); }
 
-            
+
         }
-        
+
 
 
         private void ConnectionsComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -37,14 +33,14 @@ namespace WinFormsApp1
             DataReaderSql.GetDatabases(connectionsComboBox, dbSelectorComboBox);
             dbSelectorComboBox.Visible = true;
             dbSelectorComboBox.SelectedIndex = 0;
-            
+
         }
 
         private void DbSelectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Console.WriteLine(dbSelectorComboBox.SelectedItem.ToString());
             //Console.WriteLine(connectionsComboBox.SelectedItem.ToString());
-            DataReaderSql.GetDataTables(connectionsComboBox,dbSelectorComboBox,dbTableComboBox);
+            DataReaderSql.GetDataTables(connectionsComboBox, dbSelectorComboBox, dbTableComboBox);
             dbTableComboBox.Visible = true;
         }
 

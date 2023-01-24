@@ -36,8 +36,6 @@
                 SortingAsc(array, k + 1, end, Grid);
             }
             else { return; }
-
-
         }
         public void SortingDesc(string[] array, int start, int end, DataGridView Grid)
         {
@@ -62,8 +60,6 @@
                 SortingDesc(array, k + 1, end, Grid);
             }
             else { return; }
-
-
         }
         private static void SwapRows(DataGridView Grid, int row1, int row2)
         {
@@ -79,7 +75,6 @@
         }
         public static void swap(string[] array, int index1, int index2, DataGridView Grid)
         {
-
             (array[index2], array[index1]) = (array[index1], array[index2]);
             SwapRows(Grid, index1, index2);
         }

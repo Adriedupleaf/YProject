@@ -4,9 +4,9 @@ namespace WinFormsApp1
 {
     public partial class TextForm : Form
     {
-        DataReaderText DataReader = new();
-        ControlsLayout ControlsLayout = new();
-        Functions sortare = new();
+        readonly DataReaderText DataReader = new();
+        readonly ControlsLayout ControlsLayout = new();
+        readonly Functions sortare = new();
         public TextForm()
         {
 

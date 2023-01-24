@@ -31,12 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.SelectionPanel = new System.Windows.Forms.Panel();
-            this.SortingPanel = new System.Windows.Forms.Panel();
-            this.SortType = new System.Windows.Forms.ComboBox();
-            this.IdComboBox = new System.Windows.Forms.ComboBox();
-            this.CloseButton = new System.Windows.Forms.Button();
-            this.SortButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,10 +41,16 @@
             this.OkButton = new System.Windows.Forms.Button();
             this.GridPanel = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SortButton = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
+            this.IdComboBox = new System.Windows.Forms.ComboBox();
+            this.SortType = new System.Windows.Forms.ComboBox();
+            this.SortingPanel = new System.Windows.Forms.Panel();
             this.SelectionPanel.SuspendLayout();
-            this.SortingPanel.SuspendLayout();
             this.GridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SortingPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // SelectionPanel
@@ -71,71 +71,6 @@
             this.SelectionPanel.Name = "SelectionPanel";
             this.SelectionPanel.Size = new System.Drawing.Size(469, 108);
             this.SelectionPanel.TabIndex = 4;
-            // 
-            // SortingPanel
-            // 
-            this.SortingPanel.AutoSize = true;
-            this.SortingPanel.Controls.Add(this.SortType);
-            this.SortingPanel.Controls.Add(this.IdComboBox);
-            this.SortingPanel.Controls.Add(this.CloseButton);
-            this.SortingPanel.Controls.Add(this.SortButton);
-            this.SortingPanel.Controls.Add(this.label1);
-            this.SortingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SortingPanel.Location = new System.Drawing.Point(0, 0);
-            this.SortingPanel.Name = "SortingPanel";
-            this.SortingPanel.Size = new System.Drawing.Size(469, 108);
-            this.SortingPanel.TabIndex = 3;
-            this.SortingPanel.Visible = false;
-            // 
-            // SortType
-            // 
-            this.SortType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SortType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SortType.FormattingEnabled = true;
-            this.SortType.Location = new System.Drawing.Point(275, 39);
-            this.SortType.Name = "SortType";
-            this.SortType.Size = new System.Drawing.Size(142, 28);
-            this.SortType.TabIndex = 5;
-            // 
-            // IdComboBox
-            // 
-            this.IdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.IdComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IdComboBox.Location = new System.Drawing.Point(12, 39);
-            this.IdComboBox.Name = "IdComboBox";
-            this.IdComboBox.Size = new System.Drawing.Size(238, 28);
-            this.IdComboBox.TabIndex = 4;
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButton.Location = new System.Drawing.Point(430, 5);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(26, 29);
-            this.CloseButton.TabIndex = 3;
-            this.CloseButton.Text = "X";
-            this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
-            // SortButton
-            // 
-            this.SortButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SortButton.Location = new System.Drawing.Point(323, 5);
-            this.SortButton.Name = "SortButton";
-            this.SortButton.Size = new System.Drawing.Size(94, 29);
-            this.SortButton.TabIndex = 2;
-            this.SortButton.Text = "Sort";
-            this.SortButton.UseVisualStyleBackColor = true;
-            this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Sort data by:";
             // 
             // label4
             // 
@@ -259,6 +194,71 @@
             this.dataGridView1.Size = new System.Drawing.Size(975, 294);
             this.dataGridView1.TabIndex = 4;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Sort data by:";
+            // 
+            // SortButton
+            // 
+            this.SortButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SortButton.Location = new System.Drawing.Point(323, 5);
+            this.SortButton.Name = "SortButton";
+            this.SortButton.Size = new System.Drawing.Size(94, 29);
+            this.SortButton.TabIndex = 2;
+            this.SortButton.Text = "Sort";
+            this.SortButton.UseVisualStyleBackColor = true;
+            this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.Location = new System.Drawing.Point(430, 5);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(26, 29);
+            this.CloseButton.TabIndex = 3;
+            this.CloseButton.Text = "X";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // IdComboBox
+            // 
+            this.IdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.IdComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.IdComboBox.Location = new System.Drawing.Point(12, 39);
+            this.IdComboBox.Name = "IdComboBox";
+            this.IdComboBox.Size = new System.Drawing.Size(238, 28);
+            this.IdComboBox.TabIndex = 4;
+            // 
+            // SortType
+            // 
+            this.SortType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SortType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SortType.FormattingEnabled = true;
+            this.SortType.Location = new System.Drawing.Point(275, 39);
+            this.SortType.Name = "SortType";
+            this.SortType.Size = new System.Drawing.Size(142, 28);
+            this.SortType.TabIndex = 5;
+            // 
+            // SortingPanel
+            // 
+            this.SortingPanel.AutoSize = true;
+            this.SortingPanel.Controls.Add(this.SortType);
+            this.SortingPanel.Controls.Add(this.IdComboBox);
+            this.SortingPanel.Controls.Add(this.CloseButton);
+            this.SortingPanel.Controls.Add(this.SortButton);
+            this.SortingPanel.Controls.Add(this.label1);
+            this.SortingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SortingPanel.Location = new System.Drawing.Point(0, 0);
+            this.SortingPanel.Name = "SortingPanel";
+            this.SortingPanel.Size = new System.Drawing.Size(469, 108);
+            this.SortingPanel.TabIndex = 3;
+            this.SortingPanel.Visible = false;
+            // 
             // SqlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -273,10 +273,10 @@
             this.Load += new System.EventHandler(this.SqlForm_Load);
             this.SelectionPanel.ResumeLayout(false);
             this.SelectionPanel.PerformLayout();
-            this.SortingPanel.ResumeLayout(false);
-            this.SortingPanel.PerformLayout();
             this.GridPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.SortingPanel.ResumeLayout(false);
+            this.SortingPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,12 +285,6 @@
         #endregion
 
         private Panel SelectionPanel;
-        private Panel SortingPanel;
-        private ComboBox SortType;
-        private ComboBox IdComboBox;
-        private Button CloseButton;
-        private Button SortButton;
-        private Label label1;
         private Button SortButton2;
         private Button OkButton;
         private Panel GridPanel;
@@ -301,5 +295,11 @@
         private Label label3;
         private Label label2;
         private Label label4;
+        private Panel SortingPanel;
+        private ComboBox SortType;
+        private ComboBox IdComboBox;
+        private Button CloseButton;
+        private Button SortButton;
+        private Label label1;
     }
 }
