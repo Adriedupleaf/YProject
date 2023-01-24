@@ -62,6 +62,7 @@ namespace YProject.BackEnd
             catch (Exception ex) { Console.WriteLine(ex); return false; }
 
         }
+
         public void FileSearchOpen(TextBox Path)
         {
             OpenFileDialog openFileDialog1 = new()

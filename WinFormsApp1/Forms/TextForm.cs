@@ -6,7 +6,7 @@ namespace WinFormsApp1
     {
         readonly DataReaderText DataReader = new();
         readonly ControlsLayout ControlsLayout = new();
-        readonly Functions sortare = new();
+        Functions sortare = new();
         public TextForm()
         {
 

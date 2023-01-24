@@ -75,5 +75,10 @@ namespace WinFormsApp1
                 sortare.SortingDesc(Functions.gridTransform(dataGridView1, IdComboBox.SelectedIndex), 0, dataGridView1.Rows.Count - 1, dataGridView1);
             }
         }
+
+        private void SortButton2_Click(object sender, EventArgs e)
+        {
+            SortingPanel.Visible = true;
+        }
     }
 }

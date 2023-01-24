@@ -58,5 +58,10 @@ namespace WinFormsApp1
         {
             SortingPanel.Visible = false;
         }
+
+        private void SortButton2_Click(object sender, EventArgs e)
+        {
+            SortingPanel.Visible = true;
+        }
     }
 }

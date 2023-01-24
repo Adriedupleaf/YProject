@@ -35,8 +35,11 @@
             this.SqlButton = new System.Windows.Forms.Button();
             this.TextButton = new System.Windows.Forms.Button();
             this.ExcelButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +79,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Linen;
+            this.splitContainer1.Panel2.Controls.Add(this.label3);
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Size = new System.Drawing.Size(682, 453);
             this.splitContainer1.SplitterDistance = 209;
             this.splitContainer1.SplitterWidth = 1;
@@ -133,6 +139,36 @@
             this.ExcelButton.UseVisualStyleBackColor = false;
             this.ExcelButton.Click += new System.EventHandler(this.ExcelButton_Click);
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(264, 246);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 26);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "By 111317";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Yu Gothic", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(134, 200);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(242, 48);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Year Project";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -146,6 +182,8 @@
             this.Text = "YProject";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -159,5 +197,7 @@
         private Button ExcelButton;
         private Button SqlButton;
         private Button TextButton;
+        private Label label2;
+        private Label label3;
     }
 }
