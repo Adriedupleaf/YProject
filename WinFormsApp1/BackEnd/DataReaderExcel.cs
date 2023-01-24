@@ -47,9 +47,13 @@ namespace YProject.BackEnd
                         }
 
                         dt.Rows.Add(newRow);
-
+                        
                     }
-
+                    foreach (DataColumn col in dt.Columns)
+                        dataGrid.Columns.Add(col.ColumnName, col.ColumnName);
+                    foreach (DataRow row in dt.Rows)
+                        dataGrid.Rows.Add(row.ItemArray);
+                    idComboBox.DataSource = columnNames;
                 }
 
                 return true;
@@ -57,14 +61,6 @@ namespace YProject.BackEnd
             }
             catch (Exception ex) { Console.WriteLine(ex); return false; }
 
-        }
-        public void DataBinding(ComboBox IdComboBox, DataGridView DataGrid)
-        {
-            foreach (DataColumn col in dt.Columns)
-                dataGrid.Columns.Add(col.ColumnName, col.ColumnName);
-            foreach (DataRow row in dt.Rows)
-                dataGrid.Rows.Add(row.ItemArray);
-            idComboBox.DataSource = columnNames;
         }
         public void FileSearchOpen(TextBox Path)
         {
